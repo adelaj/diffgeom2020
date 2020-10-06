@@ -1,0 +1,191 @@
+﻿\documentclass[a4paper,12pt]{extreport}
+
+\usepackage{polyglossia}
+%\usepackage{ucharclasses}
+\usepackage{csquotes}
+\usepackage[colorlinks,citecolor=teal,linkcolor=purple,urlcolor=violet]{hyperref}
+\usepackage{comment}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{arrows.meta}
+
+\setmainlanguage{russian}
+\setotherlanguages{english, french, german}
+%\setTransitionsForLatin{\begingroup\hyphenrules{english}\hyphenrules{french}\hyphenrules{german}}{\endgroup}
+
+%\usepackage{fontspec}
+\usepackage{amsmath, amssymb}
+\usepackage[math-style=ISO,bold-style=ISO]{unicode-math}
+\usepackage{hyphenat}
+%\usepackage{rmathbr}
+\defaultfontfeatures{Ligatures=TeX}
+
+\setmainfont{XITS}
+\setmathfont[UprightFont=*-regular,BoldFont=*-bold]{XITS Math}
+%\setmathfont[range=\mathit/{greek,Greek}]{XITS Italic}
+%\setsansfont[Scale=MatchUppercase, Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*-Oblique, BoldItalicFont=*-BoldOblique]{DejaVuSansCondensed}
+%\setmonofont[Scale=MatchUppercase, Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*-Oblique, BoldItalicFont=*-BoldOblique]{DejaVuSansMono}
+%\newfontfamily\el[Scale=MatchUppercase]{DejaVuSans-ExtraLight.ttf}
+
+\tikzcdset{arrow style=tikz,diagrams={>={Stealth[length=3pt, width=4pt, inset=1.5pt]}}}
+%\tikzset{commutative diagrams/arrow style=math font}
+%\tikzset{>/.tip={Straight Barb[angle=90:2pt 1]}}
+%\tikzset{arrow style=tikz,/tikz/commutative diagrams/diagrams={>={Straight Barb[scale=0.8]}}}
+
+%\newfontfamily{\latinfontsf}[Scale=MatchUppercase]{DejaVu Sans}
+%\newfontfamily{\latinfonttt}[Script=Latin,Scale=MatchUppercase]{DejaVu Sans Mono}
+%\newfontfamily{\cyrillicfontsf}[Scale=MatchUppercase, UprightFont=DejaVuSans.ttf, BoldFont=DejaVuSans-Bold.ttf, ItalicFont=DejaVuSans-Oblique.ttf, BoldItalicFont=DejaVuSans-BoldOblique.ttf]{DejaVuSans.ttf}
+
+\newfontfamily\cyrillicfont{xits}
+%\newfontfamily\cyrillicfontsf[Scale=MatchUppercase, Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*-Oblique, BoldItalicFont=*-BoldOblique]{DejaVuSansCondensed}
+%\newfontfamily\cyrillicfonttt[Scale=MatchUppercase, Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*-Oblique, BoldItalicFont=*-BoldOblique]{DejaVuSansMono}
+%\newfontfamily\el[Scale=MatchUppercase, Extension=.ttf, UprightFont=*]{DejaVuSans-ExtraLight}
+
+%\newfontfamily{\cyrillicfontbftt}[Scale=MatchUppercase, BoldFont=DejaVu Sans Mono Bold]{DejaVu Sans Mono Bold}
+%\setmathfont[range=\mathsf, Scale=MatchUppercase]{DejaVu Sans}
+
+\usepackage[backend=biber,hyperref=auto,language=auto,autolang=other,citestyle=gost-numeric,bibstyle=gost-numeric,arxiv=abs,nohashothers=true,nosortothers=true,uniquelist=false]{biblatex}
+%\renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{~---}\intitlepunct}}}
+\addbibresource{main.bib}
+
+%\DefineBibliographyStrings{english}{%
+%  bibliography = {References},
+%}
+
+\usepackage[margin=2cm]{geometry}
+
+\newcommand{\rP}{\mathrm{P}}
+\newcommand{\rGr}{\mathrm{Gr}}
+\newcommand{\bCP}{\mathbb{C}\mspace{-1.5mu}P}
+\newcommand{\iSO}{S\mspace{-1.5mu}O}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\rInt}{\mathop{\textup{Int}}}
+\newcommand{\rCl}{\mathop{\textup{Cl}}}
+\newcommand{\rFr}{\mathop{\textup{Fr}}}
+\newcommand{\rIm}{\mathop{\textup{Im}}}
+\newcommand{\rab}{\mathop{\textup{ab}}}
+\newcommand{\rpr}{\mathop{\textup{pr}}}
+\newcommand{\rtl}{\mathop{\textup{tl}}}
+\newcommand{\rbs}{\mathop{\textup{bs}}}
+\newcommand{\rid}{\mathop{\textup{id}}}
+\newcommand{\rin}{\mathop{\textup{in}}\nolimits}
+\newcommand{\rim}{\mathop{\textup{im}}}
+\newcommand{\rad}{\mathop{\textup{ad}}}
+\newcommand{\sT}{\mathop{\mathsf{T}}}
+\newcommand{\rRe}{\mathop{\mathrm{Re}}}
+\newcommand{\rDiff}{\mathop{\textup{Diff}}\nolimits}
+\newcommand{\rker}{\mathop{\textup{ker}}}
+\newcommand{\rrel}{\mathop{\textup{rel}}}
+
+%\usepackage[explicit]{titlesec}
+%\titlespacing{\paragraph}{0pt}{*1.75}{.5em}[]
+
+\renewcommand*{\thepage}{\textup{\arabic{page}}}
+\renewcommand*\labelenumi{(\theenumi)}
+
+\def\?#1{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%\let\sp^
+%\catcode`\^=\active
+%\gdef^#1{\sp{\hspace{0.075em}#1}}
+
+\setcounter{secnumdepth}{4}
+\renewcommand{\theparagraph}{\arabic{section}.\arabic{subsection}.\arabic{paragraph}}
+\renewcommand*{\thefootnote}{\arabic{footnote})}
+
+\newcommand\secmark{}
+\newcommand\marktotoc[1]{\renewcommand{\secmark}{#1}}
+
+\makeatletter
+\newcommand{\BreakableEmDash}{\leavevmode%
+\nobreak\hskip\z@skip--\discretionary{}{}{}\nobreak\hskip\z@skip}
+\def\emd{\ifmmode--\else\BreakableEmDash\fi}
+
+%\patchcmd{\@thm}{\thm@headfont{\scshape}}{\thm@headfont{\scshape\bfseries}}{}{}
+%\patchcmd{\@thm}{\thm@notefont{\fontseries\mddefault\upshape}}{}{}{}
+
+\renewcommand\@makefntext[1]{%
+    \parindent 1em%
+    \noindent
+    \hb@xt@1.8em{\hss\@makefnmark} #1}
+\renewcommand\section{\@startsection{section}{2}{\z@}%
+    {-3.0ex\@plus -1ex \@minus -.2ex}%
+    {1.5ex \@plus .2ex}%
+    {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{4}{\z@}%
+    {2.ex \@plus1ex \@minus.2ex}%
+    {0em}%
+    {\normalfont\normalsize\bfseries\maybe@addperiod}}
+\newcommand\maybe@addperiod[1]{#1\@addpunct{.\hspace{.5em}}}
+\newenvironment{adv}[1][\unskip]%
+{\renewcommand\@seccntformat[1]{\csname the##1\endcsname #1\csname post##1\endcsname}%
+\renewcommand\secmark{#1}\addtocontents{toc}{\protect\marktotoc{#1}}}%
+{\renewcommand\@seccntformat[1]{\csname the##1\endcsname \csname post##1\endcsname}%
+\addtocontents{toc}{\protect\marktotoc{}}}
+
+\def\numberline#1{\hb@xt@\@tempdima{#1\secmark.\hfil}}
+
+\makeatother
+
+%\let\savenumberline\numberline
+%\def\numberline#1{\savenumberline{#1\ifx&#1&\else#1\secmark.\fi}}
+
+%\addtocontents{toc}{\setcounter{tocdepth}{3}}
+
+%\vspace{-5mm}
+
+\begin{document}
+\tableofcontents
+
+\chapter{Введение}
+
+Материал, отмеченный символом <<*>>, необходим к изучению только с целью получения оценки <<отлично>>. Материал, предваряемый символом <<\P>>, предназначен для создания у читателя иллюзии полноты картины и необязателен к изучению. Символ <<$\Box$>> означает конец доказательства (либо его отсутствие). 
+
+\section{Соглашения и обозначения}\label{s:notation}
+
+\subsection[Операции теории множеств]{} Теоретико-множественные операции такие, как объединение, пересечение, разность обозначаются стандартным образом: $\cup$, $\cap$, $\setminus$ и т. д. Символ $\subset$ обозначает нестрогое включение. Множество всех подмножеств (\textit{булеан}) множества $X$ обозначается через $\symbf2^X$. Пусть $\symbfup\Beta\subset\symbf2^X$, тогда по определению полагается: $\bigcup\symbfup\Beta\coloneq\bigcup_{B\in\symbfup\Beta}B$ и $\bigcap\symbfup\Beta\coloneq\bigcap_{B\in\symbfup\Beta}B$.
+
+\section{Предварительные сведения из общей топологии}\label{s:gtop}
+
+\subsection[Базовые понятия общей топологии]{} Базовые понятия общей топологии, такие как \textit{топологическое пространство}, \textit{открытое} и \textit{замкнутое} множество, \textit{внутренность}, \textit{замыкание} и \textit{граница} предполагаются известными (см. \cite[гл.~1 \S\S2,6]{Viro_2018}). Пусть $X$~--- топологическое пространство, через $\symup\Omega_X\subset \symbf2^X$ обозначается множество всех открытых подмножеств в $X$ (которое называется \textit{топологической структурой} пространства $X$). Для произвольного подмножества $A\subset X$ через $\rInt A$, $\rCl A$ и $\rFr A$ обозначается соответственно его внутренность, замыкание и граница, а элементы указанных множеств называются соответственно \textit{внутренними} точками, точками \textit{прикосновения} и \textit{граничными} точками. Точка $a\in A$ называется \textit{предельной} точкой (или точкой \textit{сгущения}) множества $A$, если $a\in\rCl(A\setminus\{a\})$.
+
+\subsection[Хаусдорфовость]{} Топологическое пространство называется \textit{хаусдорфовым} (или пространством, удовлетворяющим \textit{второй аксиоме счётности}), если для любых точек $u, v \in X$, $u\neq v$, существуют такие их окрестности $U, V\in \symbfup\Omega_X$, $U \ni u$, $V\ni v$, что $U\cap V = \varnothing$. Очевидно, что любое метрическое пространство хаусдорфово, в частности, хаусдорфово и $\mathbb R^n$.
+
+\subsection[Компактность]{} Топологическое пространство $X$ называется \textit{компактным}, если для любого открытого покрытия $\symbfup\Gamma\subset\symup\Omega_X$, $\bigcup\symbfup\Gamma=X$ существует конечное подпокрытие $\symbfup\Gamma'\subset\symbfup\Gamma$, $\bigcup\symbfup\Gamma'=X$. Хорошо известно, что подмножество $K\subset\mathbb R^n$ является компактным тогда и только тогда, когда $K$~--- замкнуто и ограниченно (см. \cite[гл.~3 п.~17.7]{Viro_2018}). Очевидно, что непрерывный образ компактного пространства~--- компактен. 
+
+\subsection[Компактность и хаусдорфовость]{Предложение} \textit{Компактное подмножество хаусдорфова пространства замкнуто.} 
+
+\textit{Доказательство*.} Cм. в \cite[гл.~3 п.~17.5]{Viro_2018}.\hfill$\Box$
+
+\subsection[Компактность и замкнутость]{Предложение} \textit{Замкнутое подмножество компактного пространства компактно.} 
+
+\textit{Доказательство*.} Cм. там же.\hfill$\Box$
+
+\subsection[Компактность и непрерывные отображения]{Предложение} \textit{Непрерывное отображение компактного пространства в хаусдорфова замкнуто. В частности, если это отображение биективно, то  оно~--- гомеоморфизм.}
+
+\textit{Доказательство*.} Cм. в \cite[гл.~3 п.~17.9]{Viro_2018}.\hfill$\Box$
+
+\begin{adv}[*]
+\subsection[TBD]{} TBD
+\end{adv}
+
+\subsection[TBD]{}
+
+\section{Сведения из дифференциального исчисления}\label{s:calc}
+
+\subsection[Дифференциал отображения]{} %Отображение $f:$
+
+%\subsection[Теорема об обратном отображении]{Теорема об обратной функции}
+
+%\subsection[Теорема о неявной функции]{Теорема о неявной функции}
+
+\printbibliography[heading=bibintoc]
+\end{document} 
+
+
+
