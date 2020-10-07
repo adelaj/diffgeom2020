@@ -2,8 +2,6 @@ name: LuaLaTeX
 on:
   push:
     branches: [ main ]
-    tags:
-      - 'v*'
   pull_request:
     branches: [ main ]
 jobs:
@@ -16,6 +14,8 @@ jobs:
           run: |
             lualatex main.tex
             biber main.bcf
+            sed -i 's/{\\textup\s*{\([^}]\+\)}}/{\1}/g' main.idx
+            makeindex main.idx
             lualatex main.tex
       - uses: actions/upload-artifact@v2
         with:
@@ -23,7 +23,6 @@ jobs:
           path: main.pdf
       - uses: actions/create-release@v1
         id: create_release
-        #if: contains(github.ref, 'release')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -32,7 +31,6 @@ jobs:
           draft: false
           prerelease: false
       - uses: actions/upload-release-asset@v1
-        #if: contains(github.ref, 'release')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

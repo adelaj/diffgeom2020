@@ -17,6 +17,9 @@
 \setotherlanguages{english, french, german}
 %\setTransitionsForLatin{\begingroup\hyphenrules{english}\hyphenrules{french}\hyphenrules{german}}{\endgroup}
 
+\usepackage{makeidx}
+\usepackage[totoc]{idxlayout}
+
 %\usepackage{fontspec}
 \usepackage{amsmath, amssymb}
 \usepackage[math-style=ISO,bold-style=ISO]{unicode-math}
@@ -64,11 +67,11 @@
 \newcommand{\iSO}{S\mspace{-1.5mu}O}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\bR}{\mathbb{R}}
-\newcommand{\rInt}{\mathop{\textup{Int}}}
-\newcommand{\rCl}{\mathop{\textup{Cl}}}
-\newcommand{\rFr}{\mathop{\textup{Fr}}}
-\newcommand{\rIm}{\mathop{\textup{Im}}}
-\newcommand{\rab}{\mathop{\textup{ab}}}
+\newcommand{\rInt}{\mathop{\symup{Int}}}
+\newcommand{\rCl}{\mathop{\symup{Cl}}}
+\newcommand{\rFr}{\mathop{\symup{Fr}}}
+\newcommand{\rIm}{\mathop{\symup{Im}}}
+\newcommand{\rab}{\mathop{\symup{ab}}}
 \newcommand{\rpr}{\mathop{\textup{pr}}}
 \newcommand{\rtl}{\mathop{\textup{tl}}}
 \newcommand{\rbs}{\mathop{\textup{bs}}}
@@ -130,7 +133,12 @@
 
 \def\numberline#1{\hb@xt@\@tempdima{#1\secmark.\hfil}}
 
+\newcommand\htg[2]{\Hy@raisedlink{\hypertarget{#1}{#2}}}
+
 \makeatother
+
+\newcommand\dfn[1]{\index{#1@\protect\hyperlink{#1}{\MakeUppercase #1}}\htg{#1}{}\nobreak}
+\def\dfnn#1#2{\index{{\MakeUppercase #2}!#1@\protect\hyperlink{INDEX:#2:#1}{#1}}\htg{INDEX:#2:#1}{}\nobreak}
 
 %\let\savenumberline\numberline
 %\def\numberline#1{\savenumberline{#1\ifx&#1&\else#1\secmark.\fi}}
@@ -138,6 +146,8 @@
 %\addtocontents{toc}{\setcounter{tocdepth}{3}}
 
 %\vspace{-5mm}
+
+\makeindex
 
 \begin{document}
 \tableofcontents
@@ -152,7 +162,7 @@
 
 \section{Предварительные сведения из общей топологии}\label{s:gtop}
 
-\subsection[Базовые понятия общей топологии]{} Базовые понятия общей топологии, такие как \textit{топологическое пространство}, \textit{открытое} и \textit{замкнутое} множество, \textit{внутренность}, \textit{замыкание} и \textit{граница} предполагаются известными (см. \cite[гл.~1 \S\S2,6]{Viro_2018}). Пусть $X$~--- топологическое пространство, через $\symup\Omega_X\subset \symbf2^X$ обозначается множество всех открытых подмножеств в $X$ (которое называется \textit{топологической структурой} пространства $X$). Для произвольного подмножества $A\subset X$ через $\rInt A$, $\rCl A$ и $\rFr A$ обозначается соответственно его внутренность, замыкание и граница, а элементы указанных множеств называются соответственно \textit{внутренними} точками, точками \textit{прикосновения} и \textit{граничными} точками. Точка $a\in A$ называется \textit{предельной} точкой (или точкой \textit{сгущения}) множества $A$, если $a\in\rCl(A\setminus\{a\})$.
+\subsection[Базовые понятия общей топологии]{} Базовые понятия общей топологии, такие как \dfnn{топологическое}{пространство}\textit{топологическое пространство}, \dfnn{открытое}{множество}\textit{открытое} и \dfnn{замкнутое}{множество}\textit{замкнутое} множество, \textit{внутренность}, \textit{замыкание} и \textit{граница} предполагаются известными (см. \cite[гл.~1 \S\S2,6]{Viro_2018}). Пусть $X$~--- топологическое пространство, через $\symup\Omega_X\subset \symbf2^X$ обозначается множество всех открытых подмножеств в $X$ (которое называется \textit{топологической структурой} пространства $X$). Для произвольного подмножества $A\subset X$ через $\rInt A$, $\rCl A$ и $\rFr A$ обозначается соответственно его внутренность, замыкание и граница, а элементы указанных множеств называются соответственно \textit{внутренними} точками, точками \textit{прикосновения} и \textit{граничными} точками. Точка $a\in A$ называется \textit{предельной} точкой (или точкой \textit{сгущения}) множества $A$, если $a\in\rCl(A\setminus\{a\})$.
 
 \subsection[Хаусдорфовость]{} Топологическое пространство называется \textit{хаусдорфовым} (или пространством, удовлетворяющим \textit{второй аксиоме счётности}), если для любых точек $u, v \in X$, $u\neq v$, существуют такие их окрестности $U, V\in \symbfup\Omega_X$, $U \ni u$, $V\ni v$, что $U\cap V = \varnothing$. Очевидно, что любое метрическое пространство хаусдорфово, в частности, хаусдорфово и $\mathbb R^n$.
 
@@ -166,7 +176,7 @@
 
 \textit{Доказательство*.} Cм. в \cite[гл.~3 п.~17.5]{Viro_2018}.\hfill$\Box$
 
-\subsection[Компактность и непрерывные отображения]{Предложение} \textit{Непрерывное отображение компактного пространства в хаусдорфова замкнуто. В частности, если это отображение биективно, то  оно~--- гомеоморфизм.}
+\subsection[Компактность и непрерывные отображения]{Предложение} \textit{Непрерывное отображение компактного пространства в хаусдорфово замкнуто. В частности, если это отображение биективно, то  оно~--- гомеоморфизм.}
 
 \textit{Доказательство*.} Cм. в \cite[гл.~3 п.~17.9]{Viro_2018}.\hfill$\Box$
 
@@ -185,6 +195,8 @@
 %\subsection[Теорема о неявной функции]{Теорема о неявной функции}
 
 \printbibliography[heading=bibintoc]
+
+\printindex
 \end{document} 
 
 
