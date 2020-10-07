@@ -2,6 +2,8 @@ name: LuaLaTeX
 on:
   push:
     branches: [ main ]
+    tags:
+      - 'v*'
   pull_request:
     branches: [ main ]
 jobs:
@@ -20,7 +22,7 @@ jobs:
           name: diffgeom2020
           path: main.pdf
       - uses: actions/create-release@v1
-        if: contains(github.ref, 'release')
+        #if: contains(github.ref, 'release')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -29,7 +31,7 @@ jobs:
           draft: false
           prerelease: false
       - uses: actions/upload-release-asset@v1
-        if: contains(github.ref, 'release')
+        #if: contains(github.ref, 'release')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
