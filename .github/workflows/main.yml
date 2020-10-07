@@ -22,6 +22,7 @@ jobs:
           name: diffgeom2020
           path: main.pdf
       - uses: actions/create-release@v1
+        id: create_release
         #if: contains(github.ref, 'release')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
