@@ -90,6 +90,10 @@
 
 \def\?#1{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
 
+%\let\sp^
+%\catcode`\^=\active
+%\gdef^#1{\sp{\hspace{0.075em}#1}}
+
 \setcounter{secnumdepth}{4}
 \renewcommand{\theparagraph}{\arabic{section}.\arabic{subsection}.\arabic{paragraph}}
 \renewcommand*{\thefootnote}{\arabic{footnote})}
@@ -160,7 +164,7 @@
 
 \subsection[Компактность и замкнутость]{Предложение} \textit{Замкнутое подмножество компактного пространства компактно.} 
 
-\textit{Доказательство*.} Cм. там же.\hfill$\Box$
+\textit{Доказательство*.} Cм. в \cite[гл.~3 п.~17.5]{Viro_2018}.\hfill$\Box$
 
 \subsection[Компактность и непрерывные отображения]{Предложение} \textit{Непрерывное отображение компактного пространства в хаусдорфова замкнуто. В частности, если это отображение биективно, то  оно~--- гомеоморфизм.}
 
