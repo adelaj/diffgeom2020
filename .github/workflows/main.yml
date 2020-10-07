@@ -18,4 +18,22 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: diffgeom2020
-          path: main.pdf            
+          path: main.pdf
+      - uses: actions/create-release@v1
+        if: contains(github.ref, "release")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - uses: actions/upload-release-asset@v1
+        if: contains(github.ref, "release")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./main.pdf
+          asset_name: main.pdf
+          asset_content_type: application/pdf
