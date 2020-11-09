@@ -12,11 +12,7 @@ jobs:
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            lualatex main.tex
-            biber main.bcf
-            sed -i 's/{\\textup\s*{\([^}]\+\)}}/{\1}/g' main.idx
-            makeindex main.idx
-            lualatex main.tex
+            make main.pdf
       - uses: actions/upload-artifact@v2
         with:
           name: diffgeom2020
